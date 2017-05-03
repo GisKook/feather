@@ -6,8 +6,9 @@ import (
 )
 
 type HttpConf struct {
-	Addr  string
-	AppID string
+	Addr     string
+	AppID    string
+	Interval int
 }
 
 type DBConf struct {

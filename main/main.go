@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/giskook/feather/conf"
-	"log"
+	"github.com/giskook/feather/db_socket"
+	"github.com/giskook/feather/feather_worker"
 	"os"
 	"os/signal"
 	"runtime"
@@ -13,13 +14,14 @@ import (
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	// read configuration
-	configuration, err := conf.ReadConfig("./conf.json")
+	configuration, _ := conf.ReadConfig("./conf.json")
+
+	db_socket.NewDbSocket(configuration.DB)
+	worker := feather_worker.NewFeatherWorker()
+	go worker.Do()
 
 	// catchs system signal
 	chSig := make(chan os.Signal)
 	signal.Notify(chSig, syscall.SIGINT, syscall.SIGTERM)
 	fmt.Println("Signal: ", <-chSig)
-	redis_socket.Close()
-	mq_socket.Stop()
-	db.GetDBSocket().Listener.UnlistenAll()
 }

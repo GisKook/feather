@@ -2,6 +2,7 @@ package http_client
 
 import (
 	"github.com/giskook/feather/base"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -15,11 +16,13 @@ func NewHttpClient() *HttpClient {
 	}
 }
 
-func (c *HttpClient) Do(req *HttpRequest) {
-	resp, err := c.Do(req.Request)
+func (c *HttpClient) Do(req *HttpRequest) string {
+	resp, err := c.Instance.Do(req.Request)
 	if err != nil {
 		base.PrintError(err)
-		return ""
 	}
 	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+
+	return string(body)
 }

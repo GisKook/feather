@@ -1,0 +1,14 @@
+{
+    "Http":{
+        "Addr":"",
+        "AppID":"",
+	"Interval":5
+    },
+    "DB":{ 
+        "Host":"",
+        "Port":"",
+        "User":"",
+        "Passwd":"",
+        "DbName":""
+    }
+}
