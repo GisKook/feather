@@ -5,6 +5,7 @@ import (
 	"github.com/giskook/feather/conf"
 	"github.com/giskook/feather/db_socket"
 	"github.com/giskook/feather/http_client"
+	"log"
 	"time"
 )
 
@@ -32,11 +33,15 @@ func (f *FeatherWorker) Do() {
 func (f *FeatherWorker) DoWork() {
 	start_time := db_socket.GetDBSocket().GetMaxExamTime()
 	start_time += 1
+
+	_now := time.Now().Unix()
+	log.Printf("start %d , end %d ", start_time, _now)
+
 	req := http_client.NewHttpRequest(&http_client.HttpRequestParameters{
 		Url:           conf.GetConf().Http.Addr,
 		ApID:          conf.GetConf().Http.AppID,
 		ExamStartTime: start_time,
-		ExamEndTime:   time.Now().Unix(),
+		ExamEndTime:   _now,
 	})
 
 	str_resp := f.HttpClient.Do(req)

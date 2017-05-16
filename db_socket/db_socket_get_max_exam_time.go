@@ -8,7 +8,6 @@ import (
 const sql_get_max_exam_time string = "SELECT MAX(ExamTime) FROM t_xk_health_machine"
 
 func (db *DbSocket) GetMaxExamTime() int64 {
-	log.Println(sql_get_max_exam_time)
 	stmt, err := db.Db.Prepare(sql_get_max_exam_time)
 	defer stmt.Close()
 	if err != nil {

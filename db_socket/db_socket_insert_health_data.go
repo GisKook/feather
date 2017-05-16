@@ -3,7 +3,7 @@ package db_socket
 import (
 	"fmt"
 	"github.com/giskook/feather/base"
-	//"log"
+	"log"
 )
 
 const (
@@ -18,6 +18,7 @@ func (socket *DbSocket) InsertExam(resp *base.Response, test_items map[string]in
 		if v.IDNumber != "" {
 			_sql := FmtSQL(v, test_items)
 			//log.Println(_sql)
+			log.Printf("MachineID %s, ExamTime %s, TestItem %s, PersonName %s, IDNumber %s \n", v.MachineID, v.ExamTime, v.TestItem, v.Name, v.IDNumber)
 			_, err = tx.Exec(_sql)
 			base.PrintError(err)
 		}
