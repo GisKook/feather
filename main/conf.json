@@ -1,14 +1,14 @@
 {
     "Http":{
-        "Addr":"",
-        "AppID":"",
+        "Addr":"http://appapi.xzhealth.cn/tcm/datas",
+        "AppID":"f2cfe146-7c40-4550-ae51-8943bffa3733", 
 	"Interval":5
     },
     "DB":{ 
-        "Host":"",
-        "Port":"",
-        "User":"",
-        "Passwd":"",
-        "DbName":""
+        "Host":"192.168.3.122",
+        "Port":"3306",
+        "User":"root",
+        "Passwd":"dkdh13579",
+        "DbName":"health_big_data"
     }
 }

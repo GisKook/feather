@@ -35,7 +35,7 @@ func (f *FeatherWorker) DoWork() {
 	start_time += 1
 
 	_now := time.Now().Unix()
-	log.Printf("start %d , end %d ", start_time, _now)
+	log.Printf("start %d , end %d \n", start_time, _now)
 
 	req := http_client.NewHttpRequest(&http_client.HttpRequestParameters{
 		Url:           conf.GetConf().Http.Addr,
